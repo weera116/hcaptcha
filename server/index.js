@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 
-app.get('/siteverify/:token', (req, res) => {
+app.get('/siteverify/:token', (req, res, next) => {
   try {
     const result = verify(keys.HCAPTCHA_SECRET, req.params.token);
     if (!result.success) {
