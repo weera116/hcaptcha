@@ -18,4 +18,4 @@ services:
     volumes:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/hcaptcha:/var/hcaptcha/certbot
-    entrypoint: "/bin/sh -c 'trap exit TERM; whi
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
