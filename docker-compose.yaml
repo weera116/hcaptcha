@@ -1,6 +1,8 @@
 version: '3'
 services:
   nginx:
+    depends_on:
+      - api
     build:
       context: ./nginx
     restart: unless-stopped
@@ -12,6 +14,15 @@ services:
       - "80:80"
       - "443:443"
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+  api:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./server
+    volumes:
+      - /app/node_modules
+      - ./server:/app
+    environment:
+      - PORT=5000
   certbot:
     image: certbot/certbot
     restart: unless-stopped
