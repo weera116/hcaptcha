@@ -23,7 +23,7 @@ app.get('/siteverify/:token', (req, res) => {
       message: 'Success',
       attendances
     });
-  } catch (error) {
+  } catch (err) {
     if (!err.statusCode) {
       err.statusCode = 500;
     }
