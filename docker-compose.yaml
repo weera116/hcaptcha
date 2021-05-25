@@ -1,0 +1,21 @@
+version: '3'
+services:
+  nginx:
+    build:
+      context: ./nginx
+    restart: unless-stopped
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/hcaptcha:/var/hcaptcha/certbot
+    ports:
+      - "80:80"
+      - "443:443"
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+  certbot:
+    image: certbot/certbot
+    restart: unless-stopped
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/hcaptcha:/var/hcaptcha/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; whi
