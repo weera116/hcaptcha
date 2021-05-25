@@ -21,7 +21,6 @@ app.get('/siteverify/:token', async(req, res, next) => {
     }
     res.status(200).json({
       message: 'Success',
-      attendances
     });
   } catch (err) {
     if (!err.statusCode) {
