@@ -13,7 +13,7 @@ app.use(express.json());
 
 app.get('/siteverify/:token', (req, res) => {
   try {
-    const result = verify(keys.HCAPTCHA_SECRET, req.body.token);
+    const result = verify(keys.HCAPTCHA_SECRET, req.params.token);
     if (!result.success) {
       const error = new Error('Verification Failed.');
       error.statusCode = 422;
