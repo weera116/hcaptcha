@@ -11,9 +11,9 @@ app.use(cors());
 app.use(express.json());
 
 
-app.get('/siteverify/:token', (req, res, next) => {
+app.get('/siteverify/:token', async(req, res, next) => {
   try {
-    const result = verify(keys.HCAPTCHA_SECRET, req.params.token);
+    const result = await verify(keys.HCAPTCHA_SECRET, req.params.token);
     if (!result.success) {
       const error = new Error('Verification Failed.');
       error.statusCode = 422;
