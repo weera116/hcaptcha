@@ -20,6 +20,7 @@ services:
     build:
       context: ./nginx
     restart: unless-stopped
+    container_name: hcaptcha-nginx
 
 
 networks:
