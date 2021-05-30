@@ -41,6 +41,6 @@ app.use((error, req, res, next) => {
   });
 });
 
-app.listen(5000, err => {
+app.listen(process.env.port || 5000, err => {
   console.log('Listening');
 });
