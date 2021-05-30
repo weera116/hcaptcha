@@ -6,13 +6,21 @@ services:
     volumes:
       - /app/node_modules
       - ./server:/app
+    environment:
+      PORT: 5000
+  nginx:
+    depends_on:
+      - api
     expose:
       - 80
-    environment:
+    environment: 
       VIRTUAL_HOST: hcaptcha.wmtech.cc
       LETSENCRYPT_HOST: hcaptcha.wmtech.cc
       LETSENCRYPT_EMAIL: swmeng@yes.my
-      PORT: 80
+    build:
+      context: ./nginx
+    restart: unless-stopped
+
 
 networks:
     default:
