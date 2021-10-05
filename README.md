@@ -5,6 +5,13 @@ This Repo consists of a nginx proxy serving the hcaptcha html template and also 
 ## Getting Started
 ### Prerequisite
 A proxy setup is required. Details are in [PROXY_SETUP.md](PROXY_SETUP.md).
+Modify `docker-compose.yaml` and replace the following environment variables according to your usage for ssl cert generation.
+```yaml
+VIRTUAL_HOST: <yourdomain>
+LETSENCRYPT_HOST: <yourdomain>
+LETSENCRYPT_EMAIL: <email>
+```
+Please note that you have configured your domain dns settings before spinning up the containers.
 
 ### Example Usage (Flutter)
 ```dart
