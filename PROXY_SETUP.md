@@ -43,7 +43,7 @@ services:
       - ./nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
 
   letsencrypt:
-    image: jrcs/letsencrypt-nginx-proxy-companion
+    image: nginxproxy/acme-companion
     container_name: nginx-proxy-le
     depends_on:
       - nginx
