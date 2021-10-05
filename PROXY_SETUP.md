@@ -29,7 +29,7 @@ services:
       - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true"
 
   dockergen:
-    image: nginx-proxy/docker-gen
+    image: nginxproxy/docker-gen
     container_name: nginx-proxy-gen
     depends_on:
       - nginx
