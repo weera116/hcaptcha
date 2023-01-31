@@ -16,6 +16,9 @@
       if (typeof Captcha !== "undefined") {
         Captcha.postMessage(response);
       }
+      else if (window.webkit) {
+        window.webkit.messageHandlers.captcha.postMessage(response);
+      }
       window.parent.postMessage(response, "*");
     }
   </script>
